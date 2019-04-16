@@ -94,18 +94,18 @@ var videoList = {
 $(document).ready(function(){
  $('#vdotmb').empty();
 	$.each(videoList, function(i, p) {
-		$('#vdotmb').append('<p><img align="middle" src="'+p[1]+'" alt="'+p[0]+'" width="60" style="cursor:pointer" onClick="windowaddque(\''+i+'\',\'everyone\')"><span style="font-family:arial;font-size:12px">'+p[0]+'</span></p>');
+		$('#vdotmb').append('<p><img align="middle" src="'+p[1]+'" alt="'+p[0]+'" width="60" style="cursor:pointer" onClick="windowaddque(\''+i+'\')"><span style="font-family:arial;font-size:12px">'+p[0]+'</span></p>');
 	});
 	
 	
 	
 });
-function windowaddque(id,name){
-
-  if(name.length == 0){
+function windowaddque(id){
+   var pname = $('#pname').val();
+  if(pname.length == 0){
 	pname = "Everyone Dance!!";
   }
-  var vd = [id,name];
+  var vd = [id,pname];
   opener.addquefromcontroller(vd);
   
   opener.focus();
@@ -113,9 +113,10 @@ function windowaddque(id,name){
 </script>
 </head>
 <body>
-
-
-<div id="vdotmb"></div>
+<b>1.Enter Name</b>
+<input id="pname" type="text" placeholder="Next Dancer"></input><br>
+<b>2.Select Song</b>
+<div id="vdotmb" style="max-height:400px;overflow:auto"></div>
 </div>
 
 

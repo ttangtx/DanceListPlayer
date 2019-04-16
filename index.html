@@ -88,6 +88,7 @@ function sloadvideo(){
    }
    ;
 	var vdoInfo = videoList[vdoId];
+	
 	var vdoTmb = vdoInfo[1];
 	var vdoStart = vdoInfo[2];
 	var vdoEnd = vdoInfo[3];
@@ -107,7 +108,7 @@ $(document).ready(function(){
 	$.each(videoList, function(i, p) {
 		$('#vdoselect').append($('<option></option>').val(i).html(p[0]));
 	});
-OpenWindow = window.open('thumbnail.html','_blank','width=335,height=330,resizable=1');
+OpenWindow = window.open('thumbnail.html','_blank','width=335,height=600,scrollbars=1,resizable=1');
 });
 
 </script>
