@@ -24,13 +24,33 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-function sloadvideo(src,start,end){
-  
-	var videoURL = "https://www.youtube.com/embed/"+src+"&start="+start+"&end="+end+"&autoplay=1&playsinline=0";
+var videoList = {
+/*title,src, start,finish*/
+"72-1s_AhoWg" :[ "that POWER   Justin Bieber Ft  will i am   Just Dance 2014 Wii U","https://i.ytimg.com/vi/72-1s_AhoWg/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCq4unudgNfIZZo3bsEf1C-nxMO6w",60,65],
+"lXvoS3QQLC4" :[ "Just Dance Unlimited - HandClap","https://i.ytimg.com/vi/lXvoS3QQLC4/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCOXAyxxND2cqswFxBuUJmdezGz0Q",60,65],
+"YCDCwuGcEmA" :[ "Just Dance 2014 Y.M.C.A. by The Village People Music & Lyrics Video YMCA","https://i.ytimg.com/vi/YCDCwuGcEmA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAQ_hiMxkUEwmFmUyyVA1nBIGgt3w",60,65],
+"qt4zIG7kUBc" :[ "Just Dance 2016 - Animals - 5 stars","https://i.ytimg.com/vi/qt4zIG7kUBc/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLDZh_rm00a0lISYTtRrH94IfDmZ0A",60,65]
+};
+function sloadvideo(){
+   //get info from array
+   
+    var vdoId = $('#vdoselect').val();
+	var vdoInfo = videoList[vdoId];
+	var vdoStart = vdoInfo[1];
+	var vdoEnd = vdoInfo[2];
+	var vdoTmb = vdoInfo[0];
+	var videoURL = "https://www.youtube.com/embed/"+vdoId+"?start="+vdoStart+"&end="+vdoEnd+"&autoplay=1&playsinline=0";
 
 	$('#mainplayer').attr('src', videoURL);
   
 }
+$(document).ready(function(){
+ $('#vdoselect').empty();
+	$.each(videoList, function(i, p) {
+		$('#vdoselect').append($('<option></option>').val(i).html(p[0]));
+	});
+});
+
 </script>
 </head>
 <body>
@@ -41,7 +61,7 @@ function sloadvideo(src,start,end){
     <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen></iframe>
 </div>
 <div class="videoSelector">
-
+<select id="vdoselect"></select>
 <a href="javascript:void(0)" onClick="sloadvideo('Ev4KygTTYf4',65,85);">Load next dance</a>
 </div>
 
