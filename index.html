@@ -47,7 +47,8 @@ var videoList = {
 "qt4zIG7kUBc" :[ "Just Dance 2016 - Animals - 5 stars","https://i.ytimg.com/vi/qt4zIG7kUBc/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLDZh_rm00a0lISYTtRrH94IfDmZ0A",60,65]
 };
 var videoQue =[];
-
+var loadtimer = null;
+var countdowntimer = null;
 var videoAuto = ["Ev4KygTTYf4","qt4zIG7kUBc"];
 function getRandomFromAuto(){
 	var vdo = videoAuto[Math.floor(Math.random()*videoAuto.length)];
@@ -81,6 +82,7 @@ function reloadQueDisplay(){
 	});
 }
 function queNextVideo(){
+clearTimeout(countdowntimer);
  var nextmsg = "Next up .... ";
  if(Object.keys(videoQue).length > 0){
 	var nextobj = videoQue[0];
@@ -92,9 +94,11 @@ function queNextVideo(){
  $('#nextupmsg').append(nextmsg);
  $('#countdown').attr('src', "count10.gif");
  $('#mainplayer').hide();
-setTimeout(function(){ sloadvideo(); }, 10000);
+ countdowntimer = setTimeout(function(){ sloadvideo(); }, 10000);
 }
 function sloadvideo(){
+  clearTimeout(countdowntimer);
+  clearTimeout(loadtimer);
    //get info from array
    $('#countdown').attr('src', "blank.gif");
    
@@ -122,7 +126,7 @@ function sloadvideo(){
 	reloadQueDisplay();
 	//wait and play next
 	var waittime = ((vdoEnd-vdoStart) * 1000) + 2000;
-	setTimeout(function(){ queNextVideo(); }, waittime);
+	loadtimer = setTimeout(function(){ queNextVideo(); }, waittime);
 }
 
 	var OpenWindow = null;
