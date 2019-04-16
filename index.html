@@ -26,23 +26,63 @@
 <script>
 var videoList = {
 /*title,src, start,finish*/
+"Ev4KygTTYf4":["Fortnite Dances - Random 3 minutes","https://i.ytimg.com/vi/xWJqoQIzVoA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBd-DBYeegTszjjcu867ajPSgDu2g",0,0],
 "72-1s_AhoWg" :[ "that POWER   Justin Bieber Ft  will i am   Just Dance 2014 Wii U","https://i.ytimg.com/vi/72-1s_AhoWg/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCq4unudgNfIZZo3bsEf1C-nxMO6w",60,65],
 "lXvoS3QQLC4" :[ "Just Dance Unlimited - HandClap","https://i.ytimg.com/vi/lXvoS3QQLC4/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCOXAyxxND2cqswFxBuUJmdezGz0Q",60,65],
 "YCDCwuGcEmA" :[ "Just Dance 2014 Y.M.C.A. by The Village People Music & Lyrics Video YMCA","https://i.ytimg.com/vi/YCDCwuGcEmA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAQ_hiMxkUEwmFmUyyVA1nBIGgt3w",60,65],
 "qt4zIG7kUBc" :[ "Just Dance 2016 - Animals - 5 stars","https://i.ytimg.com/vi/qt4zIG7kUBc/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLDZh_rm00a0lISYTtRrH94IfDmZ0A",60,65]
 };
+var videoQue =[];
+
+var videoAuto = ["Ev4KygTTYf4","qt4zIG7kUBc"];
+function getRandomFromAuto(){
+	var vdo = videoAuto[Math.floor(Math.random()*videoAuto.length)];
+	return vdo;
+}
+function getVdobyId(id){
+	var vdo = videoList[id];
+	return vdo;
+}
+function addque(){
+  var addID = $('#vdoselect').val();
+  var pname = $('#pname').val();
+  if(pname.length == 0){
+	pname = "Everyone Dance!!";
+  }
+  var vd = [addID,pname];
+  videoQue.push(vd);
+  reloadQueDisplay();
+}
+function reloadQueDisplay(){
+	$('#vdotmb').empty();
+	$.each(videoQue, function(i, p) {
+	    var vdoObj = getVdobyId(p[0]);
+		$('#vdotmb').append('<p style="float:left"><img align="middle" src="'+vdoObj[1]+'" alt="'+vdoObj[0]+'" width="120"><div style="padding-top:30px;max-width:200px;float:left;font-family:arial;font-size:12px"><b>'+p[1]+'</b><br>'+vdoObj[0]+'</div></p>');
+		
+	});
+}
 function sloadvideo(){
    //get info from array
-   
-    var vdoId = $('#vdoselect').val();
+   var vdoId = getRandomFromAuto();
+   var pname = "Everyone Dance!!";
+   if(Object.keys(videoQue).length > 0){
+      var v = videoQue.shift();
+	  vdoId = v[0];
+	  pname = v[1];
+   }
+   ;
 	var vdoInfo = videoList[vdoId];
+	var vdoTmb = vdoInfo[1];
 	var vdoStart = vdoInfo[2];
 	var vdoEnd = vdoInfo[3];
-	var vdoTmb = vdoInfo[1];
+	if(vdoId == "Ev4KygTTYf4"){
+		vdoStart = Math.floor(Math.random()*2020);
+		vdoEnd = vdoStart+180;
+	}
 	var videoURL = "https://www.youtube.com/embed/"+vdoId+"?start="+vdoStart+"&end="+vdoEnd+"&autoplay=1&playsinline=0";
-	alert(videoURL);
+	// count down - video time + 5. flash message 10 seconds, go to next on the que, if que is empty, have a random select list.
 	$('#mainplayer').attr('src', videoURL);
-  
+	reloadQueDisplay();
 }
 $(document).ready(function(){
  $('#vdoselect').empty();
@@ -55,16 +95,16 @@ $(document).ready(function(){
 </head>
 <body>
 
-
 <div class="videoWrapper">
-    <!-- Copy & Pasted from YouTube -->
-    <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen></iframe>
+    <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
 </div>
+<br>
 <div class="videoSelector">
-<select id="vdoselect"></select>
-<a href="javascript:void(0)" onClick="sloadvideo('Ev4KygTTYf4',65,85);">Load next dance</a>
-</div>
+<select id="vdoselect"></select><input id="pname" type="text" placeholder="Dancer Names"></input>
+<a href="javascript:void(0)" onClick="addque();">Load to List</a>
 
+</div>
+<a href="javascript:void(0)" onClick="sloadvideo();">&#x27A5;</a><div id="vdotmb"></div>
 
 </body>
 </html>
