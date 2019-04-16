@@ -21,6 +21,17 @@
 
 
 }
+.scrolling-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width:80%;
+}
+
+  .vdo {
+    display: inline-block;
+	white-space: normal;
+  }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -53,11 +64,16 @@ function addque(){
   videoQue.push(vd);
   reloadQueDisplay();
 }
+function addquefromcontroller(vdoobj){
+ 
+  videoQue.push(vdoobj);
+  reloadQueDisplay();
+}
 function reloadQueDisplay(){
 	$('#vdotmb').empty();
 	$.each(videoQue, function(i, p) {
 	    var vdoObj = getVdobyId(p[0]);
-		$('#vdotmb').append('<p style="float:left"><img align="middle" src="'+vdoObj[1]+'" alt="'+vdoObj[0]+'" width="120"><div style="padding-top:30px;max-width:200px;float:left;font-family:arial;font-size:12px"><b>'+p[1]+'</b><br>'+vdoObj[0]+'</div></p>');
+		$('#vdotmb').append('<div class="vdo"><img align="middle" src="'+vdoObj[1]+'" alt="'+vdoObj[0]+'" width="120"><div style="padding-top:30px;max-width:200px;float:left;font-family:arial;font-size:12px"><b>'+p[1]+'</b><br>'+vdoObj[0]+'</div></div>');
 		
 	});
 }
@@ -84,11 +100,14 @@ function sloadvideo(){
 	$('#mainplayer').attr('src', videoURL);
 	reloadQueDisplay();
 }
+
+	var OpenWindow = null;
 $(document).ready(function(){
  $('#vdoselect').empty();
 	$.each(videoList, function(i, p) {
 		$('#vdoselect').append($('<option></option>').val(i).html(p[0]));
 	});
+OpenWindow = window.open('thumbnail.html','_blank','width=335,height=330,resizable=1');
 });
 
 </script>
@@ -99,12 +118,15 @@ $(document).ready(function(){
     <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
 </div>
 <br>
-<div class="videoSelector">
+
+<a href="javascript:void(0)" onClick="sloadvideo();">load</a><div id="vdotmb" class="scrolling-wrapper"></div><br>
+
+<p>
+<div class="videoSelector" style="float:left">
 <select id="vdoselect"></select><input id="pname" type="text" placeholder="Dancer Names"></input>
 <a href="javascript:void(0)" onClick="addque();">Load to List</a>
 
 </div>
-<a href="javascript:void(0)" onClick="sloadvideo();">&#x27A5;</a><div id="vdotmb"></div>
-
+</p>
 </body>
 </html>

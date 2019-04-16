@@ -93,14 +93,24 @@ var videoList = {
 $(document).ready(function(){
  $('#vdotmb').empty();
 	$.each(videoList, function(i, p) {
-		$('#vdotmb').append('<p><img align="middle" src="'+p[1]+'" alt="'+p[0]+'" width="120"><span style="font-family:arial;font-size:24px">'+p[0]+'</span></p>');
+		$('#vdotmb').append('<p><img align="middle" src="'+p[1]+'" alt="'+p[0]+'" width="60" onClick="windowaddque(\''+i+'\',\'everyone\')"><span style="font-family:arial;font-size:12px">'+p[0]+'</span></p>');
 	});
+	
+	
+	
 });
+function windowaddque(id,name){
 
+  if(name.length == 0){
+	pname = "Everyone Dance!!";
+  }
+  var vd = [id,name];
+  
+  opener.alert(vd);
+}
 </script>
 </head>
 <body>
-
 
 
 <div id="vdotmb"></div>
