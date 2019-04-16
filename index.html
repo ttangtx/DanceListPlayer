@@ -77,8 +77,14 @@ function reloadQueDisplay(){
 		
 	});
 }
+function queNextVideo(){
+
+$('#countdown').append("<img src='count10.gif'>");
+setTimeout(function(){ sloadvideo(); }, 10000);
+}
 function sloadvideo(){
    //get info from array
+   $('#countdown').empty();
    var vdoId = getRandomFromAuto();
    var pname = "Everyone Dance!!";
    if(Object.keys(videoQue).length > 0){
@@ -94,12 +100,15 @@ function sloadvideo(){
 	var vdoEnd = vdoInfo[3];
 	if(vdoId == "Ev4KygTTYf4"){
 		vdoStart = Math.floor(Math.random()*2020);
-		vdoEnd = vdoStart+180;
+		vdoEnd = vdoStart+5; //5 secs for testing
 	}
 	var videoURL = "https://www.youtube.com/embed/"+vdoId+"?start="+vdoStart+"&end="+vdoEnd+"&autoplay=1&playsinline=0";
 	// count down - video time + 5. flash message 10 seconds, go to next on the que, if que is empty, have a random select list.
 	$('#mainplayer').attr('src', videoURL);
 	reloadQueDisplay();
+	//wait and play next
+	var waittime = ((vdoEnd-vdoStart) * 1000) + 5000;
+	setTimeout(function(){ queNextVideo(); }, waittime);
 }
 
 	var OpenWindow = null;
@@ -113,8 +122,8 @@ OpenWindow = window.open('thumbnail.html','_blank','width=335,height=600,scrollb
 
 </script>
 </head>
-<body>
-
+<body background-color="#333">
+<div class="countdown"><img src='blank.gif'></div>
 <div class="videoWrapper">
     <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
 </div>
