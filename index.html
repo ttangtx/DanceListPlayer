@@ -4,6 +4,9 @@
 
 <title>Rose Mary Haggar Elementary PTA Beach Blast</title>
  <style>
+ body{
+	background-color:#008080;
+ }
 .videoWrapper {
 	position: relative;
 	padding-bottom: 40%; /* 16:9 */
@@ -78,13 +81,24 @@ function reloadQueDisplay(){
 	});
 }
 function queNextVideo(){
-
-$('#countdown').append("<img src='count10.gif'>");
+ var nextmsg = "Next up .... ";
+ if(Object.keys(videoQue).length > 0){
+	var nextobj = videoQue[0];
+	nextmsg = nextmsg + "  "+nextobj[1];
+ }else{
+	nextmsg = nextmsg + "  random dance";
+ }
+ $('#nextupmsg').empty();
+ $('#nextupmsg').append(nextmsg);
+ $('#countdown').attr('src', "count10.gif");
+ $('#mainplayer').hide();
 setTimeout(function(){ sloadvideo(); }, 10000);
 }
 function sloadvideo(){
    //get info from array
-   $('#countdown').empty();
+   $('#countdown').attr('src', "blank.gif");
+   
+ $('#mainplayer').show();
    var vdoId = getRandomFromAuto();
    var pname = "Everyone Dance!!";
    if(Object.keys(videoQue).length > 0){
@@ -107,7 +121,7 @@ function sloadvideo(){
 	$('#mainplayer').attr('src', videoURL);
 	reloadQueDisplay();
 	//wait and play next
-	var waittime = ((vdoEnd-vdoStart) * 1000) + 5000;
+	var waittime = ((vdoEnd-vdoStart) * 1000) + 2000;
 	setTimeout(function(){ queNextVideo(); }, waittime);
 }
 
@@ -122,9 +136,10 @@ OpenWindow = window.open('thumbnail.html','_blank','width=335,height=600,scrollb
 
 </script>
 </head>
-<body background-color="#333">
-<div class="countdown"><img src='blank.gif'></div>
-<div class="videoWrapper">
+<body>
+
+<center><div id="nextupmsg"></div><br><img id="countdown" src='blank.gif'></center>
+<div class="videoWrapper" id="videowin">
     <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
 </div>
 <br>
