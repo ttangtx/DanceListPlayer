@@ -36,11 +36,11 @@ function sloadvideo(){
    
     var vdoId = $('#vdoselect').val();
 	var vdoInfo = videoList[vdoId];
-	var vdoStart = vdoInfo[1];
-	var vdoEnd = vdoInfo[2];
-	var vdoTmb = vdoInfo[0];
+	var vdoStart = vdoInfo[2];
+	var vdoEnd = vdoInfo[3];
+	var vdoTmb = vdoInfo[1];
 	var videoURL = "https://www.youtube.com/embed/"+vdoId+"?start="+vdoStart+"&end="+vdoEnd+"&autoplay=1&playsinline=0";
-
+	alert(videoURL);
 	$('#mainplayer').attr('src', videoURL);
   
 }
