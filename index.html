@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
 
+<title>Rose Mary Haggar Elementary PTA Beach Blast</title>
  <style>
 .videoWrapper {
 	position: relative;
@@ -16,25 +17,34 @@
 	width: 100%;
 	height: 100%;
 }
+.videoSelector {
+
+
+}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function sloadvideo(src,start,end){
+  
+	var videoURL = "https://www.youtube.com/embed/"+src+"&start="+start+"&end="+end+"&autoplay=1&playsinline=0";
+
+	$('#mainplayer').attr('src', videoURL);
+  
+}
+</script>
+</head>
+<body>
+
+
 <div class="videoWrapper">
     <!-- Copy & Pasted from YouTube -->
     <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen></iframe>
 </div>
 <div class="videoSelector">
 
-<a href="javascript:void(0)" onClick="loadvideo('Ev4KygTTYf4',65,85)">Load next dance</a>
+<a href="javascript:void(0)" onClick="sloadvideo('Ev4KygTTYf4',65,85);">Load next dance</a>
 </div>
-<script>
-function loadvideo(src,start,end){
-  
-   var videoURL = "https://www.youtube.com/embed/"+src+"&start="+start+"&end="+end+"&autoplay=1&playsinline=0";
- alert(videoURL);'
-alert('#mainplayer').attr('src');
-   $('#mainplayer').attr('src', videoURL);
-  
-}
-</script>
+
 
 </body>
 </html>
