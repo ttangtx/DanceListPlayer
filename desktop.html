@@ -17,7 +17,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 90%;
+	width: 100%;
 	height: 90%;
 }
 .videoSelector {
@@ -113,13 +113,16 @@ font-size: 16px;
   
 background-color:#8e7cc3;
   }
+  .vdo:first-of-type{
+background-color:#00dd00;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 var latestFortnite="Ev4KygTTYf4";
 var videoList = {
 /*title,src, start,finish*/
-latestFortnite:["Fortnite Dances - Random 3 minutes","https://i.ytimg.com/vi/xWJqoQIzVoA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBd-DBYeegTszjjcu867ajPSgDu2g",0,0],
+"Ev4KygTTYf4":["Fortnite Dances - Random Dances","https://i.ytimg.com/vi/xWJqoQIzVoA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBd-DBYeegTszjjcu867ajPSgDu2g",0,0],
 "72-1s_AhoWg" :[ "that POWER   Justin Bieber Ft  will i am   Just Dance 2014 Wii U","https://i.ytimg.com/vi/72-1s_AhoWg/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCq4unudgNfIZZo3bsEf1C-nxMO6w",60,65],
 "lXvoS3QQLC4" :[ "Just Dance Unlimited - HandClap","https://i.ytimg.com/vi/lXvoS3QQLC4/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCOXAyxxND2cqswFxBuUJmdezGz0Q",60,65],
 "YCDCwuGcEmA" :[ "Just Dance 2014 Y.M.C.A. by The Village People Music & Lyrics Video YMCA","https://i.ytimg.com/vi/YCDCwuGcEmA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAQ_hiMxkUEwmFmUyyVA1nBIGgt3w",60,65],
@@ -176,6 +179,10 @@ clearTimeout(countdowntimer);
  $('#videowin').hide();
  countdowntimer = setTimeout(function(){ sloadvideo(); }, 10000);
 }
+var fortniteSecs = 60;
+function fortnitetime(){
+	fortniteSecs = $('#selectminutes').val();
+}
 function sloadvideo(){
   clearTimeout(countdowntimer);
   clearTimeout(loadtimer);
@@ -192,7 +199,7 @@ function sloadvideo(){
    }
    
 	var vdoInfo = videoList[vdoId];
-	var fortniteSecs = 5;
+	
 	var vdoTmb = vdoInfo[1];
 	var vdoStart = vdoInfo[2];
 	var vdoEnd = vdoInfo[3];
@@ -222,26 +229,33 @@ function sloadvideo(){
 
 	var OpenWindow = null;
 $(document).ready(function(){
+ fortniteSecs = $('#selectminutes').val();
  $('#vdoselect').empty();
 	$.each(videoList, function(i, p) {
 		$('#vdoselect').append($('<option></option>').val(i).html(p[0]));
 	});
-OpenWindow = window.open('thumbnail.html','_blank','width=335,height=600,scrollbars=1,resizable=1');
+//OpenWindow = window.open('thumbnail.html','_blank' 'width=335,height=600,scrollbars=1,resizable=1');
 });
 
 </script>
 </head>
 <body>
 <div style="width:100%">
-<div style="width:50%;align:left;vertical-align:top;float:left"><div id="nextupmsg" class="nextup"></div><br><img id="countdown" src='blank.gif'>
+<div style="width:60%;align:middle;vertical-align:top;float:left"><div id="nextupmsg" class="nextup"></div><br><img id="countdown" src='blank.gif'>
 <div class="videoWrapper" id="videowin">
     <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
 </div>
 <div id="vdotmb" style="vertical-align:top" class="scrolling-wrapper videoTmbList"></div><br><br><br>
 </div>
-<div style="width:50%;align:left;vertical-align:top;float:right"><a href="javascript:void(0)" onClick="queNextVideo();" class="addbtn" >Queue Next Video</a>
+<div style="width:40%;align:left;vertical-align:top;float:right"><a href="javascript:void(0)" onClick="queNextVideo();" class="addbtn" >Queue Next Video</a>
 
 <p>
+<select id="selectminutes" class="inputbox" onchange="fortnitetime()"> 
+<option value="15">Playing 15 seconds of fornite</option>
+<option value="60">Playing 1 minute of fornite</option>
+ <option value="120">Playing 2 minute of fornite</option>
+  <option value="180">Playing 3 minute of fornite</option>
+  </select>
 <div class="videoSelector" style="float:left">
 <select id="vdoselect" class="inputbox"></select><input id="pname" class="inputbox" type="text" placeholder="Dancer Names"></input>
 <a href="javascript:void(0)" onClick="addque();" class="addbtn" >Load to List</a>
