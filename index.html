@@ -174,7 +174,8 @@ clearTimeout(countdowntimer);
  $('#nextupmsg').append(nextmsg);
  $('#countdown').attr('src', "count10.gif");
  $('#videowin').hide();
- countdowntimer = setTimeout(function(){ sloadvideo(); }, 2000);
+ var waittime = 2000;
+ countdowntimer = setTimeout(function(){ sloadvideo(); }, waittime );
 }
 function sloadvideo(){
   clearTimeout(countdowntimer);
@@ -236,7 +237,7 @@ OpenWindow = window.open('thumbnail.html','_blank','width=335,height=600,scrollb
 
 <center><div id="nextupmsg" class="nextup"></div><br><img id="countdown" src='blank.gif'></center>
 <div class="videoWrapper" id="videowin">
-    <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+    <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allow="autoplay; fullscreen"></iframe>
 </div>
 <br>
 
