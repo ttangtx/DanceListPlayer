@@ -17,8 +17,8 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
+	width: 90%;
+	height: 90%;
 }
 .videoSelector {
 
@@ -101,7 +101,7 @@ font-size: 16px;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  width:80%;
+  width:100%;
 }
 
   .vdo {
@@ -174,7 +174,7 @@ clearTimeout(countdowntimer);
  $('#nextupmsg').append(nextmsg);
  $('#countdown').attr('src', "count10.gif");
  $('#videowin').hide();
- countdowntimer = setTimeout(function(){ sloadvideo(); }, 2000);
+ countdowntimer = setTimeout(function(){ sloadvideo(); }, 10000);
 }
 function sloadvideo(){
   clearTimeout(countdowntimer);
@@ -192,11 +192,10 @@ function sloadvideo(){
    }
    
 	var vdoInfo = videoList[vdoId];
-	var fortniteSecs = 10;
+	var fortniteSecs = 5;
 	var vdoTmb = vdoInfo[1];
 	var vdoStart = vdoInfo[2];
 	var vdoEnd = vdoInfo[3];
-	vdoEnd = vdoStart+fortniteSecs; 
 	if(vdoId == latestFortnite){
 		vdoStart = Math.floor(Math.random()*2020);
 		vdoEnd = vdoStart+fortniteSecs; 
@@ -233,14 +232,14 @@ OpenWindow = window.open('thumbnail.html','_blank','width=335,height=600,scrollb
 </script>
 </head>
 <body>
-
-<center><div id="nextupmsg" class="nextup"></div><br><img id="countdown" src='blank.gif'></center>
+<div style="width:100%">
+<div style="width:50%;align:left;vertical-align:top;float:left"><div id="nextupmsg" class="nextup"></div><br><img id="countdown" src='blank.gif'>
 <div class="videoWrapper" id="videowin">
     <iframe id="mainplayer" width="560" height="349" src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=65&end=70&autoplay=1&playsinline=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
 </div>
-<br>
-
-<a href="javascript:void(0)" onClick="queNextVideo();" class="addbtn" >Queue Next Video</a><div id="vdotmb" class="scrolling-wrapper videoTmbList"></div><br>
+<div id="vdotmb" style="vertical-align:top" class="scrolling-wrapper videoTmbList"></div><br><br><br>
+</div>
+<div style="width:50%;align:left;vertical-align:top;float:right"><a href="javascript:void(0)" onClick="queNextVideo();" class="addbtn" >Queue Next Video</a>
 
 <p>
 <div class="videoSelector" style="float:left">
@@ -248,6 +247,10 @@ OpenWindow = window.open('thumbnail.html','_blank','width=335,height=600,scrollb
 <a href="javascript:void(0)" onClick="addque();" class="addbtn" >Load to List</a>
 
 </div>
-</p>
+</p></div>
+</div>
+
+
+
 </body>
 </html>
