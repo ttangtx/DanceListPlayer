@@ -262,7 +262,7 @@ function sloadvideo(rickrolled){
 	$('#mainplayer').attr('src', videoURL);
 	reloadQueDisplay();
 	//wait and play next
-	var waittime = ((vdoEnd-vdoStart) * 1000) + 8000;
+	var waittime = ((vdoEnd-vdoStart) * 1000) + 12000;
 	loadtimer = setTimeout(function(){ queNextVideo(); }, waittime);
 	var nextmsg = "Next up .... ";
 	if(Object.keys(videoQue).length > 0){
