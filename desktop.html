@@ -217,6 +217,7 @@ var countdowntimer = null;
 var videoAuto = [];
 function getRandomFromAuto(){
 	var vdo = videoAuto[Math.floor(Math.random()*videoAuto.length)];
+
 	return vdo;
 }
 function getVdobyId(id){
@@ -233,6 +234,22 @@ function addque(){
   videoQue.push(vd);
   reloadQueDisplay();
 }
+
+function autoque(){
+  
+for(var x=0;x<5;x++){
+var vdo = videoAuto[Math.floor(Math.random()*videoAuto.length)];
+  var addID = vdo;
+  var pname = "Everyone Dance!!";
+  
+  var vd = [addID,pname];
+  videoQue.push(vd);
+}
+ 
+  reloadQueDisplay();
+}
+
+
 function addquefromcontroller(vdoobj){
   
   videoQue.push(vdoobj);
@@ -259,6 +276,7 @@ clearTimeout(countdowntimer);
  $('#resizable').hide();
  countdowntimer = setTimeout(function(){ sloadvideo(0); }, 10000);
 }
+
 function queFastVideo(){
 clearTimeout(countdowntimer);
 
@@ -318,6 +336,7 @@ $(document).ready(function(){
 			videoAuto.push(i);
 		}
 		$('#vdoselect').append($('<option></option>').val(i).html(p[2]+" "+p[0]));
+		
 	});
 
 });
@@ -334,12 +353,12 @@ $( function() {
 <div id="vdotmb" style="vertical-align:top" class="scrolling-wrapper videoTmbList"></div>
 <br><img id="countdown" src='blank.gif'>
 <div id="resizable" class="ui-widget-content">
-    <iframe id="mainplayer" width="100%" height="100%"  src="https://www.youtube.com/embed/oOIqEiUIcDQ?start=14&end=180&autoplay=0&playsinline=0&controls=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+    <iframe id="mainplayer" width="100%" height="100%"  src="https://www.youtube.com/embed/vxvZo3rOszU?start=14&end=180&autoplay=0&playsinline=0&controls=0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
 </div>
 
 </div>
 <div style="width:40%;align:left;vertical-align:top;float:right"><a href="javascript:void(0)" onClick="queFastVideo();" class="quebtn" ><img align="middle" src="playimage.png" width="60">Play Next Video(5 sec countdown)</a>
-
+<a href="javascript:void(0)" onClick="autoque();" class="addbtn" >Auto Load 5 Songs</a>
 <p>
 <a href="javascript:void(0)" onClick="sloadvideo(1);" class="addbtn" style="background-color:#0000dd" >Rick Roll - Click this if it's a teacher dancing</a>
 <div class="videoSelector" style="float:left">
